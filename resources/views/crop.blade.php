@@ -86,6 +86,7 @@
                 @csrf
                 <input type="hidden" name="cropped_image" id="croppedImage">
             </form>
+            <div id="uploadedResult" style="margin-top:2rem;"></div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
@@ -159,8 +160,12 @@
             })
             .then(res => res.json())
             .then(data => {
-                alert("Uploaded Successfully");
-                window.location.reload();
+                if(data.success && data.image) {
+                    const url = `{{ asset('public/storage/uploads/${data.image}') }}`;
+                    document.getElementById('uploadedResult').innerHTML = `<div style='margin-top:1rem;'><strong>Uploaded Image:</strong><br><img src='${url}' style='margin-top:0.5rem;max-width:200px;box-shadow:0 2px 8px #0003;'></div>`;
+                } else {
+                    alert("Upload failed");
+                }
             });
         });
     });
