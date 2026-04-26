@@ -14,11 +14,14 @@
         .modal-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
             background: rgba(0,0,0,0.85);
             z-index: 1000;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
+            overflow-y: auto;
         }
         .modal-content {
             background: #23272b;
@@ -27,6 +30,8 @@
             min-width: 340px;
             max-width: 95vw;
             text-align: center;
+            margin: 2rem 0;
+            border-radius: 16px;
         }
         .cropper-area {
             width: 320px;
